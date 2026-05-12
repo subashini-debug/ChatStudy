@@ -73,6 +73,126 @@ Client-server chat applications are versatile tools that facilitate real-time co
 
 Client-server chat applications are foundational to real-time communication over networks. They incorporate principles of socket programming, communication protocols, and security mechanisms to provide a seamless user experience. Understanding the basics of client-server chat applications is essential for developers involved in networked application development, as they form the backbone of various collaborative communication systems. As technology evolves, chat applications continue to adapt, incorporating new features and technologies to enhance user interaction and connectivity.
 
+## Program:
+server.py
+```
+import socket
+
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+server.bind(("127.0.0.1", 5000))
+server.listen(1)
+
+print("Server waiting for connection...")
+
+conn, addr = server.accept()
+print("Connected by:", addr)
+
+# Conversation 1
+data = conn.recv(1024).decode()
+print("Client:", data)
+
+reply = "Hello message received. Welcome to the server!"
+conn.send(reply.encode())
+
+# Conversation 2
+data = conn.recv(1024).decode()
+print("Client:", data)
+
+reply = ("Saveetha Engineering College is well known for "
+         "its engineering courses, research activities, "
+         "and modern campus facilities.")
+conn.send(reply.encode())
+
+# Conversation 3
+data = conn.recv(1024).decode()
+print("Client:", data)
+
+reply = ("The college also encourages innovation, "
+         "technical events, coding competitions, "
+         "and industry-based learning.")
+conn.send(reply.encode())
+
+# Conversation 4
+data = conn.recv(1024).decode()
+print("Client:", data)
+
+reply = ("Students participate in workshops, hackathons, "
+         "and placement training programs regularly.")
+conn.send(reply.encode())
+
+# Conversation 5
+data = conn.recv(1024).decode()
+print("Client:", data)
+
+reply = "Process completed successfully. Closing connection."
+conn.send(reply.encode())
+
+print("process completed")
+
+conn.close()
+server.close()
+```
+client.py
+```
+import socket
+import time
+
+client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+client.connect(("127.0.0.1", 5000))
+
+# Conversation 1
+msg = "Hi server, this is the client speaking."
+client.send(msg.encode())
+
+reply = client.recv(1024).decode()
+print("Server:", reply)
+
+time.sleep(1)
+
+# Conversation 2
+msg = "Can you tell me something about Saveetha Engineering College?"
+client.send(msg.encode())
+
+reply = client.recv(1024).decode()
+print("Server:", reply)
+
+time.sleep(1)
+
+# Conversation 3
+msg = "Does the college support technical development?"
+client.send(msg.encode())
+
+reply = client.recv(1024).decode()
+print("Server:", reply)
+
+time.sleep(1)
+
+# Conversation 4
+msg = "Are there activities like workshops and hackathons?"
+client.send(msg.encode())
+
+reply = client.recv(1024).decode()
+print("Server:", reply)
+
+time.sleep(1)
+
+# Conversation 5
+msg = "Thank you server, ending the conversation now."
+client.send(msg.encode())
+
+reply = client.recv(1024).decode()
+print("Server:", reply)
+
+client.close()
+```
+## Output:
+
+![alt text](<Screenshot 2026-05-12 094324.png>)
+
+![alt text](<Screenshot 2026-05-12 094256.png>)
+
 
 ## Result:
 
